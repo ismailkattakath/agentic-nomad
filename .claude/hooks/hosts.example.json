@@ -1,0 +1,17 @@
+{
+  "_comment": "SHAPE ONLY — copy to ${AGENTIC_NOMAD_HOSTS:-~/.config/agentic-nomad/hosts.json} and replace every domain. booking_hosts + document_hosts: where fill-secret.mjs may fill a passport field. code_sender_domains: the only Gmail senders whose sign-in codes the agent may read (rules/payment-secrets.md) — the domain the codes actually come from. A host matches itself and its subdomains. Policy: .claude/rules/airline-logins.md.",
+  "booking_hosts": [
+    "airline.example",
+    "other-airline.example",
+    "hotel.example"
+  ],
+  "document_hosts": [
+    "arrival-form.example",
+    "documents.example"
+  ],
+  "code_sender_domains": [
+    "airline.example",
+    "loyalty-mail.example"
+  ],
+  "passport_handle_prefix": "travel:passport:"
+}

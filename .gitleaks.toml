@@ -1,0 +1,36 @@
+# Mechanical floor for .claude/rules/no-data-here.md — catches NUMBERS, not prose.
+# Default secret rules plus personal-data shapes. Fabricated examples are allowlisted by value.
+[extend]
+useDefault = true
+
+[[rules]]
+id = "sin-shaped"
+description = "Canadian SIN shape (nine digits in 3-3-3 groups, or a masked XXX XXn nnn)"
+regex = '''\b(?:[0-9]{3}[ -][0-9]{3}[ -][0-9]{3}|X{3}[ -]X{2}[0-9][ -][0-9]{3})\b'''
+
+[[rules]]
+id = "money-to-the-cent"
+description = "A money amount to the cent — a real balance, minimum or fare"
+regex = '''[$€£]\s?[0-9]{1,3}(?:,[0-9]{3})*\.[0-9]{2}\b|\b[0-9]{1,3}(?:,[0-9]{3})+\.[0-9]{2}\b'''
+
+[[rules]]
+id = "masked-account"
+description = "A masked account or card number (••1234, ***1234, ending in 1234)"
+regex = '''(?:•{2,}|\*{3,}|ending in )[0-9]{3,4}\b'''
+
+[[rules]]
+id = "application-reference"
+description = "A government or visa-centre application reference (e.g. four letters + 8+ digits)"
+regex = '''\b[A-Z]{4}[0-9]{8,}\b'''
+
+[allowlist]
+description = "Fabricated worked examples and published numbers"
+regexes = [
+  '''XXX XX1 234''',
+  '''800-959-828''',
+  '''\$0\.0[0-9]''',            # vendor per-call prices and $0.00
+  '''••1234''',
+  '''−?\$2,000\.00''',
+  '''−?\$500\.00''',
+  '''\$1,500\.00''',
+]

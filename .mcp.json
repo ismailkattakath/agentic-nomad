@@ -1,0 +1,36 @@
+{
+  "mcpServers": {
+    "fli": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["--from", "flights[mcp]==0.9.0", "fli-mcp"]
+    },
+    "kiwi": {
+      "type": "http",
+      "url": "https://mcp.kiwi.com"
+    },
+    "trivago": {
+      "type": "http",
+      "url": "https://mcp.trivago.com/mcp"
+    },
+    "airbnb": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@openbnb/mcp-server-airbnb@0.3.0"]
+    },
+    "liteapi": {
+      "type": "http",
+      "url": "https://mcp.liteapi.travel/api/mcp",
+      "headers": { "X-Api-Key": "${LITEAPI_API_KEY}" }
+    },
+    "stripe": {
+      "type": "http",
+      "url": "https://mcp.stripe.com"
+    },
+    "bland": {
+      "type": "http",
+      "url": "https://api.bland.ai/v1/mcp",
+      "headers": { "Authorization": "Bearer ${BLAND_API_KEY}" }
+    }
+  }
+}

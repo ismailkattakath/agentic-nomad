@@ -1,0 +1,19 @@
+# Secrets — never committed
+.env
+.env.*
+!.env.example
+.envrc.local
+!.envrc
+
+# Nix / direnv / tooling
+result
+result-*
+/.direnv/
+__pycache__/
+.ruff_cache/
+.DS_Store
+.claude/settings.local.json
+.claude/state/
+
+# The operator's host allowlist lives outside the repo (README § Host allowlist)
+.claude/hooks/hosts.json

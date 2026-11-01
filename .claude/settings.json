@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "enabledMcpjsonServers": [
+    "fli",
+    "kiwi",
+    "trivago",
+    "airbnb",
+    "liteapi"
+  ],
+  "disabledMcpjsonServers": [
+    "stripe",
+    "bland"
+  ],
+  "permissions": {
+    "allow": [
+      "mcp__fli__*",
+      "mcp__kiwi__*",
+      "mcp__trivago__*",
+      "mcp__airbnb__*",
+      "Read(./docs/**)",
+      "Bash(nix flake check *)",
+      "Bash(python3 -m unittest *)",
+      "Bash(node .claude/tools/fill-secret.mjs *)"
+    ],
+    "deny": [
+      "mcp__claude_ai_Google_Drive__share_file",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./.envrc.local)",
+      "Edit(./.envrc.local)",
+      "Bash(curl *api.duffel.com*)",
+      "Bash(curl *api.liteapi.travel*)",
+      "Bash(curl *api.stripe.com*)",
+      "Bash(secret exec *)",
+      "Bash(secret reveal *)",
+      "Bash(secret copy *)",
+      "Bash(secret set *)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "^mcp__plugin_page-lab_chrome-devtools__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/page_scope.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
